@@ -78,6 +78,10 @@ const App = () => {
             setFilteredPersons(filteredPersons.map(person => person.name === newName ? updatedPerson : person))
             setPersons(filteredPersons)
           })
+          .catch(error => {
+            // handleNotifications(error.response.data.error, true)
+            console.log(error.response.data);
+          })
       }
     } else {
       personService
@@ -87,6 +91,9 @@ const App = () => {
           concatPersonLists(personList)
           setNewName('');
           setNewNumber('');
+        })
+        .catch(error => {
+          handleNotifications(error.response.data.error, true)
         })
     }
   }
